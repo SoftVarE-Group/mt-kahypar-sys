@@ -1,0 +1,12 @@
+[package]
+name = "mt-kahypar-sys"
+version = "0.1.0"
+description = "Rust bindings to Mt-KaHyPar."
+edition = "2021"
+build = "build.rs"
+links = "mtkahypar"
+license = "LGPL-3.0-or-later"
+authors = ["Jan Baudisch <jan.baudisch@uni-ulm.de>"]
+readme = "README.md"
+homepage = "https://github.com/SoftVarE-Group/mt-kahypar-sys"
+repository = "https://github.com/SoftVarE-Group/mt-kahypar-sys.git"
