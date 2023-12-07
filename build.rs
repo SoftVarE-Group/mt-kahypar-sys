@@ -3,7 +3,34 @@ use std::path::PathBuf;
 
 fn main() {
     let link_type;
+    #[cfg(feature = "bundled")]
+    {
+        panic!("Bundling is currently not supported, as Mt-KaHyPar can not be built statically.");
 
+        link_type = "static";
+
+        // When bundling mt-kahypar, build it with CMake ...
+        let build_dir = cmake::Config::new("mt-kahypar")
+            .define("BUILD_SHARED_LIBS", "OFF")
+            .build_target("install.mtkahypar")
+            .build();
+
+        // ... and set the path to the built library to be linked (statically).
+        println!(
+            "cargo:rustc-link-search={}",
+            build_dir.join("lib64").display()
+        );
+
+        println!(
+            "cargo:rustc-link-search={}",
+            build_dir.join("lib").display()
+        );
+
+        // Set include path for other libraries depending on mt-kahypar.
+        println!("cargo:include-dir={}", build_dir.join("include").display());
+    }
+
+    #[cfg(not(feature = "bundled"))]
     {
         link_type = "dylib";
 

@@ -10,3 +10,13 @@ authors = ["Jan Baudisch <jan.baudisch@uni-ulm.de>"]
 readme = "README.md"
 homepage = "https://github.com/SoftVarE-Group/mt-kahypar-sys"
 repository = "https://github.com/SoftVarE-Group/mt-kahypar-sys.git"
+
+[features]
+bundled = ["dep:cmake", "dep:tbb-sys", "dep:hwlocality-sys"]
+
+[dependencies]
+tbb-sys = { version = "1.1", optional = true }
+hwlocality-sys = { version = "0.2", optional = true }
+
+[build-dependencies]
+cmake = { version = "0.1", optional = true }
